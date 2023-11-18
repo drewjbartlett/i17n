@@ -2,7 +2,7 @@
     "name": "@drewjbartlett/i17n",
     "repository": "https://github.com/drewjbartlett/i17n",
     "type": "module",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "files": [
         "dist"
     ],
