@@ -153,6 +153,16 @@ i18n.t('withCounts.mouse', { count: 1 }) // "Mouse"
 i18n.t('withCounts.mouse', { count: 10 }) // "Mice"
 ```
 
+
+##### Missing Keys
+
+If a key is accessed but is missing it will simply return the key passed. This is useful for putting placeholder text while developing. If you have `config.loggingEnabled = true` you will see console warnings about missing keys.
+
+```ts
+i18n.t('a.missing.key') // "a.missing.key"
+```
+
+
 ##### Extending
 
 There may be times where a core i17n instance is shipped. Imagine your global translations are included.
