@@ -19,12 +19,20 @@ export interface i17n {
 }
 
 export interface i17nConfig {
+  /**
+   * The core { key: value } translations.
+   */
   translations: Trans;
-  cache?: Map<string, string | InterpolatedFn>;
+
   /**
    * When enabled warning logs will write to the console for missing keys.
    */
   loggingEnabled?: boolean;
+
+  /**
+   * Optionally pass a prebuilt cache of the resolved { key: value } pairs.
+   */
+  cache?: Map<string, string | InterpolatedFn>;
 }
 
 /**

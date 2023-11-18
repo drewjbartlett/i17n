@@ -27,9 +27,16 @@
         "lint": "eslint --ext .js,.ts, --ignore-path .eslintignore src --fix",
         "lint:dry": "eslint --ext .js,.ts, --ignore-path .eslintignore src"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "keywords": [
+        "i18n",
+        "internationalization",
+        "lightweight",
+        "translations",
+        "vue",
+        "typescript"
+    ],
+    "author": "https://github.com/drewjbartlett",
+    "license": "MIT",
     "devDependencies": {
         "@swc/jest": "^0.2.29",
         "@types/jest": "^29.5.8",

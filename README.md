@@ -4,15 +4,16 @@
 
 A 1.4kB internationalization library that acts is intended for projects needing basic translations. 
 
-mini17n features :
+### Features
 
-- ✅ basic `{ "key": "value" }` translations `t('key')`
-- ✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
-- ✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
-- ✅ smart caching - after a key is resolved once it is read from a cache
-- ✅ extending core translations
-- ✅ lightweight - 1.4kB
-- ✅ TypeScript Support
+✅ basic `{ "key": "value" }` translations `t('key')`
+✅ nested `{ "key": "child": "value" }` translations `t('key.child')`
+✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
+✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
+✅ smart caching - after a key is resolved once it is read from a cache
+✅ extending core translations
+✅ lightweight - 1.4kB
+✅ TypeScript Support
 
 
 ### Why i17n?
@@ -20,6 +21,7 @@ mini17n features :
 i17n is intended to inform that this is not a full-fledged i18n library. There is only support for a single set of translations or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i18n familiar API of i17n is exactly what you need.
 
 Using internationalization is not just for languages. It helps create a consistent UX for your application and separates the concerns of text and UIs. Imagine your application sometimes says "Add Item" and other times says "Create Item" and even worse, says "New Item" in other places. This can be confusing to some users and leads to an inconsistent user experience. i17n allows you to have a single definition `{ "addItem": "Add {item}" }` that you can reference all over your application, `t('addItem', { item: 'model.name' }).`
+
 
 ### Installation
 
@@ -81,8 +83,9 @@ import { i17n } from 'path/to/i17n'
 i17n.t('helloWorld'); // "Hello World"
 ```
 
+Optionally you can export your i17n's API to fit your convention and needs.
+
 ```ts
-// Optionally, export your own helpers to match your conventions.
 const $t = i18n.t;
 
 export { $t }
@@ -95,14 +98,18 @@ $t('helloWorld')
 
 ### Config
 
-- translations
-- cache
-- loggingEnabled
+| Value | Description |
+| ----------- | ----------- |
+| `translations` | The core `{ key: value }` translations. |
+| `loggingEnabled` | When enabled warning logs will write to the console for missing keys. |
+| `cache` | Optionally pass a prebuilt cache of the resolved `{ key: value }` pairs. |
 
 ### API
 
 - t
 - extend
+- interpolations
+- count based
 
 
 ### Usage with Vue
