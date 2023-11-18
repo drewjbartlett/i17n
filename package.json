@@ -1,6 +1,5 @@
 {
     "name": "@drewjbartlett/i17n",
-    "scope": "@drewjbartlett",
     "repository": "https://github.com/drewjbartlett/i17n",
     "type": "module",
     "version": "0.0.2",
