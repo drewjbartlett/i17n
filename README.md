@@ -1,8 +1,8 @@
 # i17n
 
-[![Core CI](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml/badge.svg)](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml)
+[![Core CI](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml/badge.svg)](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml) 
 
-A 1.4kB internationalization library that acts is intended for projects needing basic translations. 
+A lightweight (**1.4kB**) internationalization library tailored for startups and small-to-medium sized projects, offering a simple and efficient solution for managing translations in a single language without the overhead of a bloated library.
 
 ### Features
 
@@ -106,13 +106,94 @@ $t('helloWorld')
 
 ### API
 
-- t
-- extend
-- interpolations
-- count based
+- t - Attempt to resolve a translation
+
+```json
+{
+  "topLevel": "Top Level",
+  "namespace": {
+    "anotherNamespace": {
+      "tooDeep": "Deeply Namespaced Value"
+    }
+  },
+  "withAnInterpolation": "Hey, {name}!",
+  "withCounts": {
+    "mouse__one": "Mouse",
+    "mouse__many": "Mice",
+  }
+}
+```
+
+When calling `t()`, the each level of the keys are denoted by a `.`. For example:
+
+```ts
+i18n.t('topLevel') // "Top Level"
+i18n.t('namespace.anotherNamespace.tooDeep') // "Deeply Namespaced Value"
+```
+
+**Tip**: Don't nest too deeply or the first time a key is resolved it will have to iterate `n` times to resolve it. After the first time it's cached.
+
+---
+
+##### Interpolations
+
+When interpolating values, you simply pass put a value in your translation wrapped in `{}`.
+
+```ts
+i18n.t('withAnInterpolation', { name: 'Drew' }) // "Hey, Drew!"
+i18n.t('withAnInterpolation', { name: 'Robin' }) // "Hey, Robin!"
+```
+
+##### Count Based
+
+Keeping with the example above, there are times when a translation should resolve based on a given count. To do this simply provide a key of the same name and postfix it with `__one` or `__many`.
+
+```ts
+i18n.t('withCounts.mouse', { count: 1 }) // "Mouse"
+i18n.t('withCounts.mouse', { count: 10 }) // "Mice"
+```
+
+##### Extending
+
+There may be times where a core i17n instance is shipped. Imagine your global translations are included.
+
+```ts
+export const i17n = createI17n({
+  translations: {
+    global: {
+      edit: "Edit",
+      save: "Save",
+      addNew: "Add New {item}",
+    },
+  },
+});
+```
+
+However, other parts of your application may want to extend and include their own translations that don't ship as core translations. This is especially useful when lazy loading translations in Single Page Apps.
+
+
+```ts
+// my-app-1.ts
+import { i17n } from 'path/to/i17n'
+
+i17n.extend({
+  myApp1: {
+    someKey: '...',
+    anotherKey: '...',
+  }
+});
+
+// now both the original and extended translations may be used
+i17n.t('myApp1.someKey')
+i17n.t('global.edit')
+```
+
+---
 
 
 ### Usage with Vue
+
+i17n can be used in any application but to show how easy it is to use with a library like Vue, here are some examples.
 
 #### Vue 3
 
