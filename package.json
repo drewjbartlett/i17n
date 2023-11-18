@@ -1,6 +1,7 @@
 {
-    "name": "mini17n",
-    "repository": "https://github.com/drewjbartlett/mini17n",
+    "name": "@drewjbartlett/i17n",
+    "scope": "@drewjbartlett",
+    "repository": "https://github.com/drewjbartlett/i17n",
     "type": "module",
     "version": "0.0.1",
     "files": [
