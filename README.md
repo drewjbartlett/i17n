@@ -18,7 +18,7 @@ A lightweight (**1.4kB**) internationalization library tailored for startups and
 
 ### Why i17n?
 
-i17n is intended to inform that this is not a full-fledged i18n library. There is only support for a single set of translations or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i18n familiar API of i17n is exactly what you need.
+i17n is intended to inform that this is not a full-fledged i17n library. There is only support for a single set of translations or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i17n familiar API of i17n is exactly what you need.
 
 Using internationalization is not just for languages. It helps create a consistent UX for your application and separates the concerns of text and UIs. Imagine your application sometimes says "Add Item" and other times says "Create Item" and even worse, says "New Item" in other places. This can be confusing to some users and leads to an inconsistent user experience. i17n allows you to have a single definition `{ "addItem": "Add {item}" }` that you can reference all over your application, `t('addItem', { item: 'model.name' }).`
 
@@ -86,7 +86,7 @@ i17n.t('helloWorld'); // "Hello World"
 Optionally you can export your i17n's API to fit your convention and needs.
 
 ```ts
-const $t = i18n.t;
+const $t = i17n.t;
 
 export { $t }
 
@@ -127,8 +127,8 @@ $t('helloWorld')
 When calling `t()`, the each level of the keys are denoted by a `.`. For example:
 
 ```ts
-i18n.t('topLevel') // "Top Level"
-i18n.t('namespace.anotherNamespace.tooDeep') // "Deeply Namespaced Value"
+i17n.t('topLevel') // "Top Level"
+i17n.t('namespace.anotherNamespace.tooDeep') // "Deeply Namespaced Value"
 ```
 
 **Tip**: Don't nest too deeply or the first time a key is resolved it will have to iterate `n` times to resolve it. After the first time it's cached.
@@ -140,8 +140,8 @@ i18n.t('namespace.anotherNamespace.tooDeep') // "Deeply Namespaced Value"
 When interpolating values, you simply pass put a value in your translation wrapped in `{}`.
 
 ```ts
-i18n.t('withAnInterpolation', { name: 'Drew' }) // "Hey, Drew!"
-i18n.t('withAnInterpolation', { name: 'Robin' }) // "Hey, Robin!"
+i17n.t('withAnInterpolation', { name: 'Drew' }) // "Hey, Drew!"
+i17n.t('withAnInterpolation', { name: 'Robin' }) // "Hey, Robin!"
 ```
 
 ##### Count Based
@@ -149,8 +149,8 @@ i18n.t('withAnInterpolation', { name: 'Robin' }) // "Hey, Robin!"
 Keeping with the example above, there are times when a translation should resolve based on a given count. To do this simply provide a key of the same name and postfix it with `__one` or `__many`.
 
 ```ts
-i18n.t('withCounts.mouse', { count: 1 }) // "Mouse"
-i18n.t('withCounts.mouse', { count: 10 }) // "Mice"
+i17n.t('withCounts.mouse', { count: 1 }) // "Mouse"
+i17n.t('withCounts.mouse', { count: 10 }) // "Mice"
 ```
 
 
@@ -159,7 +159,7 @@ i18n.t('withCounts.mouse', { count: 10 }) // "Mice"
 If a key is accessed but is missing it will simply return the key passed. This is useful for putting placeholder text while developing. If you have `config.loggingEnabled = true` you will see console warnings about missing keys.
 
 ```ts
-i18n.t('a.missing.key') // "a.missing.key"
+i17n.t('a.missing.key') // "a.missing.key"
 ```
 
 
@@ -216,15 +216,15 @@ const i17n = createI17n({
   translations: Translations,
 });
 
-const I18nPlugin = {
+const i17nPlugin = {
   install(app) {
-    app.config.globalProperties.$t = i18n.t;
+    app.config.globalProperties.$t = i17n.t;
   },
 };
 
 const app = createApp(MainApp);
 
-app.use(I18nPlugin);
+app.use(i17nPlugin);
 ```
 
 ```vue
@@ -239,13 +239,13 @@ app.use(I18nPlugin);
 ```ts
 import Vue from 'vue';
 
-const I18nPlugin = {
+const i17nPlugin = {
   install: (Vue) => {
-    Vue.prototype.$t = i18n.t;
+    Vue.prototype.$t = i17n.t;
   },
 };
 
-Vue.use(I18nPlugin)
+Vue.use(i17nPlugin)
 ```
 
 ```vue
