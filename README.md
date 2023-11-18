@@ -17,7 +17,7 @@ mini17n features :
 
 ### Why i17n?
 
-i17n is intended to inform that this is not a full-fledged i18n library. There is only support for a single translation or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i18n familiar API of i17n is exactly what you need.
+i17n is intended to inform that this is not a full-fledged i18n library. There is only support for a single set of translations or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i18n familiar API of i17n is exactly what you need.
 
 Using internationalization is not just for languages. It helps create a consistent UX for your application and separates the concerns of text and UIs. Imagine your application sometimes says "Add Item" and other times says "Create Item" and even worse, says "New Item" in other places. This can be confusing to some users and leads to an inconsistent user experience. i17n allows you to have a single definition `{ "addItem": "Add {item}" }` that you can reference all over your application, `t('addItem', { item: 'model.name' }).`
 
