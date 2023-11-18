@@ -6,7 +6,7 @@ A 1.4kB internationalization library that acts is intended for projects needing 
 
 mini17n features :
 
-- ✅ basic `{ "key": "value" }` translations `t('hello.world')`
+- ✅ basic `{ "key": "value" }` translations `t('key')`
 - ✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
 - ✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
 - ✅ smart caching - after a key is resolved once it is read from a cache
@@ -24,14 +24,13 @@ Using internationalization is not just for languages. It helps create a consiste
 ### Installation
 
 ```bash
-npm i @drewjbartlett/i17n
+npm i @drewjbartlett/i17n --save
 ```
 
 ### Usage
 
 
 ```json
-// translations.json
 {
   "helloWorld": "Hello World!",
   "welcomeUser": "Welcome, {user}!",
@@ -44,7 +43,7 @@ npm i @drewjbartlett/i17n
     "name__one": "Item",
     "name__many": "Items",
   },
-};
+}
 ```
 
 ```ts
@@ -72,18 +71,26 @@ export const lang = {
 import { createI7n } from '@drewjbartlett/i17n'
 import Translations from 'path/to/translations';
 
-const i17n = createI17n({
+export const i17n = createI17n({
   translations: Translations,
 });
 
-i17n.t('helloWorld'); // "Hello World"
+// another-file.ts
+import { i17n } from 'path/to/i17n'
 
-/**
- * Optionally, export your own helpers to match your coding conventions.
- */
+i17n.t('helloWorld'); // "Hello World"
+```
+
+```ts
+// Optionally, export your own helpers to match your conventions.
 const $t = i18n.t;
 
 export { $t }
+
+// another-file.ts
+import { $t } from 'path/to/i17n'
+
+$t('helloWorld')
 ```
 
 ### Config
