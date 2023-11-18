@@ -6,14 +6,14 @@ A 1.4kB internationalization library that acts is intended for projects needing 
 
 ### Features
 
-✅ basic `{ "key": "value" }` translations `t('key')`
-✅ nested `{ "key": "child": "value" }` translations `t('key.child')`
-✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
-✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
-✅ smart caching - after a key is resolved once it is read from a cache
-✅ extending core translations
-✅ lightweight - 1.4kB
-✅ TypeScript Support
+- ✅ basic `{ "key": "value" }` translations `t('key')`
+- ✅ nested `{ "key": "child": "value" }` translations `t('key.child')`
+- ✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
+- ✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
+- ✅ smart caching - after a key is resolved once it is read from a cache
+- ✅ extending core translations
+- ✅ lightweight - 1.4kB
+- ✅ TypeScript Support
 
 
 ### Why i17n?
