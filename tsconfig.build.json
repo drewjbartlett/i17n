@@ -1,0 +1,12 @@
+{
+    "extends": "./tsconfig",
+    "exclude": [
+        "node_modules",
+        "src/**/*.test.tsx",
+        "src/**/*.test.ts",
+        "test/**/*",
+        "jest.config.cjs",
+        "vite.config.ts",
+        ".eslintrc.cjs"
+    ]
+}
