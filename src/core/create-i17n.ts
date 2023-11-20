@@ -5,8 +5,8 @@ import { replaceInterpolations } from '@src/core/replace-interpolations';
 import { resolveKeyFromLocale } from '@src/core/resolve-key-from-locale';
 import { merge } from '@src/utils/merge';
 
-export type Trans = {
-  [key: string]: string | Trans;
+export type Translations = {
+  [key: string]: string | Translations;
 };
 
 /**
@@ -15,14 +15,14 @@ export type Trans = {
  */
 export interface i17n {
   t: (key: string, interpolations?: Interpolations) => string;
-  extend: (extended: Trans) => void;
+  extend: (extended: Translations) => void;
 }
 
 export interface i17nConfig {
   /**
    * The core { key: value } translations.
    */
-  translations: Trans;
+  translations: Translations;
 
   /**
    * When enabled warning logs will write to the console for missing keys.
@@ -78,14 +78,14 @@ function buildCountValueKey(k: string, count: number): string {
  */
 export function createI17n(config: i17nConfig): i17n {
   const cache = config.cache || new Map<string, string | InterpolatedFn>();
-  let translations: Trans = config.translations;
+  let translations: Translations = config.translations;
   const loggingEnabled = Boolean(config.loggingEnabled);
 
   /**
    * Allow extension of the i17n.
    * Clear the cache in the chance there are collisions with new keys that previously were cached.
    */
-  function extend(extended: Trans) {
+  function extend(extended: Translations) {
     translations = merge(translations, extended);
 
     cache.clear();

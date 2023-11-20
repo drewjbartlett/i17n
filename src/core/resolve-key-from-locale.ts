@@ -1,11 +1,11 @@
-import { Trans } from '@src/core/create-i17n';
+import { Translations } from '@src/core/create-i17n';
 import { isNull } from '@src/utils/is-null';
 import { isObject } from '@src/utils/is-object';
 /**
  * Attempts to resolve a dot notation ('parent.child') to read that value from an
  * object { parent: 'child' }.
  */
-export function resolveKeyFromLocale(k: string, locale: Trans): string | null {
+export function resolveKeyFromLocale(k: string, locale: Translations): string | null {
   const keys = k.split('.');
 
   if (keys.length === 1) {
