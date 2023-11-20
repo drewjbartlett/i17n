@@ -1,1 +1,1 @@
-export { createi17n } from '@src/core/create-i17n';
+export { createI17n } from '@src/core/create-i17n';

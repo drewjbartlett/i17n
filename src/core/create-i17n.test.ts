@@ -1,4 +1,4 @@
-import { i17n, createi17n, InterpolatedFn } from '@src/core/create-i17n';
+import { i17n, createI17n, InterpolatedFn } from '@src/core/create-i17n';
 
 const lang = {
   hello: 'world',
@@ -21,12 +21,12 @@ const lang = {
   },
 };
 
-describe('createi17n', () => {
+describe('createI17n', () => {
   describe('t', () => {
     let t: i17n['t'];
 
     beforeAll(() => {
-      ({ t } = createi17n({ translations: lang }));
+      ({ t } = createI17n({ translations: lang }));
     });
 
     describe('top level keys', () => {
@@ -85,7 +85,7 @@ describe('createi17n', () => {
     beforeEach(() => {
       cache = new Map();
 
-      ({ t } = createi17n({ translations: lang, cache }));
+      ({ t } = createI17n({ translations: lang, cache }));
     });
 
     it('should cache a primitive value', () => {
@@ -193,7 +193,7 @@ describe('createi17n', () => {
     let t: i17n['t'];
 
     beforeAll(() => {
-      ({ t } = createi17n({ translations: langWithCounts }));
+      ({ t } = createI17n({ translations: langWithCounts }));
     });
 
     it('should find the the _one key when the count is one', () => {
@@ -232,7 +232,7 @@ describe('createi17n', () => {
     let extend: i17n['extend'];
 
     beforeAll(() => {
-      ({ t, extend } = createi17n({ translations: lang }));
+      ({ t, extend } = createI17n({ translations: lang }));
 
       extend({
         aNewKey: 'here',

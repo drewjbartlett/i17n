@@ -10,7 +10,7 @@ export type Trans = {
 };
 
 /**
- * This is the API that is returned from createi17n.
+ * This is the API that is returned from createI17n.
  * Right now we have only one method which handles translations.
  */
 export interface i17n {
@@ -76,7 +76,7 @@ function buildCountValueKey(k: string, count: number): string {
 /**
  * Initialize the core i17n instance.
  */
-export function createi17n(config: i17nConfig): i17n {
+export function createI17n(config: i17nConfig): i17n {
   const cache = config.cache || new Map<string, string | InterpolatedFn>();
   let translations: Trans = config.translations;
   const loggingEnabled = Boolean(config.loggingEnabled);
