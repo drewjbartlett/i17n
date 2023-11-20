@@ -18,7 +18,7 @@ export interface i17n {
   extend: (extended: Translations) => void;
 }
 
-export interface i17nConfig {
+export interface I17nConfig {
   /**
    * The core { key: value } translations.
    */
@@ -76,7 +76,7 @@ function buildCountValueKey(k: string, count: number): string {
 /**
  * Initialize the core i17n instance.
  */
-export function createI17n(config: i17nConfig): i17n {
+export function createI17n(config: I17nConfig): i17n {
   const cache = config.cache || new Map<string, string | InterpolatedFn>();
   let translations: Translations = config.translations;
   const loggingEnabled = Boolean(config.loggingEnabled);
