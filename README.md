@@ -18,7 +18,7 @@ A lightweight (**1.4kB**) internationalization library tailored for startups and
 
 ### Why i17n?
 
-i17n is intended to inform that this is not a full-fledged i17n library. There is only support for a single set of translations or language at a time. If your project is smaller or a startup with no need for multiple languages yet, but may need them in the future, the i17n familiar API of i17n is exactly what you need.
+The name "i17n" is intended to imply that this is not a full-fledged i18n library but rather a starting point. It only provides support for a single set of translations or language at a time. If your project is small or a startup that doesn't yet require multiple languages, but may need them in the future, the familiar API of i17n is exactly what you need.
 
 Using internationalization is not just for languages. It helps create a consistent UX for your application and separates the concerns of text and UIs. Imagine your application sometimes says "Add Item" and other times says "Create Item" and even worse, says "New Item" in other places. This can be confusing to some users and leads to an inconsistent user experience. i17n allows you to have a single definition `{ "addItem": "Add {item}" }` that you can reference all over your application, `t('addItem', { item: 'model.name' }).`
 
@@ -130,8 +130,6 @@ When calling `t()`, the each level of the keys are denoted by a `.`. For example
 i17n.t('topLevel') // "Top Level"
 i17n.t('namespace.anotherNamespace.tooDeep') // "Deeply Namespaced Value"
 ```
-
-**Tip**: Don't nest too deeply or the first time a key is resolved it will have to iterate `n` times to resolve it. After the first time it's cached.
 
 ---
 
