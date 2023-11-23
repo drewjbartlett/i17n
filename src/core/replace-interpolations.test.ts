@@ -6,9 +6,9 @@ describe('replaceInterpolations', () => {
     expect(
       replaceInterpolations('The awards go to: {first}, {second}, and {third}', {
         first: 'drew',
-        second: 'john',
-        third: 'dave',
+        second: 'robin',
+        third: 'cameron',
       }),
-    ).toEqual('The awards go to: drew, john, and dave');
+    ).toEqual('The awards go to: drew, robin, and cameron');
   });
 });

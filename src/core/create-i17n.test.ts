@@ -62,13 +62,13 @@ describe('createI17n', () => {
     describe('interpolated values', () => {
       it('should interpolate values', () => {
         expect(t('welcomeUser', { user: 'drew' })).toBe('Welcome, drew!');
-        expect(t('welcomeUser', { user: 'john' })).toBe('Welcome, john!');
+        expect(t('welcomeUser', { user: 'robin' })).toBe('Welcome, robin!');
         expect(t('global.addNew', { item: 'Material' })).toBe('Add New Material');
         expect(t('global.addNew', { item: t('user.name') })).toBe('Add New User');
       });
 
       it('should interpolate multiple values', () => {
-        expect(t('welcomeUsers', { user1: 'drew', user2: 'John' })).toBe('Welcome, drew and John!');
+        expect(t('welcomeUsers', { user1: 'drew', user2: 'Robin' })).toBe('Welcome, drew and Robin!');
         expect(t('withTwoOfTheSame', { user: 'drew' })).toBe('Welcome drew, we are glad to have you, drew.');
       });
 

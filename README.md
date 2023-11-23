@@ -13,7 +13,7 @@ A lightweight (**1.4kB**) internationalization library tailored for startups and
 - ✅ smart caching - after a key is resolved once it is read from a cache
 - ✅ extending core translations
 - ✅ lightweight - 1.4kB
-- ✅ TypeScript Support
+- ✅ 100% TypeScript
 
 
 ### Why i17n?
@@ -31,6 +31,7 @@ npm i @drewjbartlett/i17n --save
 
 ### Usage
 
+Create a JSON file: 
 
 ```json
 {
@@ -47,6 +48,8 @@ npm i @drewjbartlett/i17n --save
   },
 }
 ```
+
+Or export an object:
 
 ```ts
 // or translations.ts
