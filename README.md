@@ -73,7 +73,7 @@ export const lang = {
 
 ```ts
 // i17n.ts
-import { createI7n } from '@drewjbartlett/i17n'
+import { createI17n } from '@drewjbartlett/i17n'
 import Translations from 'path/to/translations';
 
 export const i17n = createI17n({
@@ -210,7 +210,7 @@ i17n can be used in any application but to show how easy it is to use with a lib
 
 ```ts
 // i17n.ts
-import { createI7n } from '@drewjbartlett/i17n'
+import { createI17n } from '@drewjbartlett/i17n'
 import Translations from 'path/to/translations';
 
 const i17n = createI17n({
