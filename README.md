@@ -1,6 +1,7 @@
 # i17n
 
 [![Core CI](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml/badge.svg)](https://github.com/drewjbartlett/i17n/actions/workflows/core.yml) 
+[![npm](https://img.shields.io/npm/dt/@drewjbartlett/i17n.svg?style=flat-square)](https://www.npmjs.com/package/@drewjbartlett/i17n)
 
 A lightweight (**1.4kB**) internationalization library tailored for startups and small-to-medium sized projects, offering a simple and efficient solution for managing translations in a single language without the overhead of a bloated library.
 
