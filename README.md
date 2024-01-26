@@ -10,7 +10,7 @@ A lightweight (**1.4kB**) internationalization library tailored for startups and
 - ✅ basic `{ "key": "value" }` translations `t('key')`
 - ✅ nested `{ "key": "child": "value" }` translations `t('key.child')`
 - ✅ interpolated values `t('Hello, {name}!', { name: 'Drew' })`
-- ✅ count based translations `t('tree', { count: 1 }) // "tree"`, `t('tree', { count: 10 }) // "trees"`
+- ✅ count based translations `t('tree', { n: 1 }) // "tree"`, `t('tree', { n: 10 }) // "trees"`
 - ✅ smart caching - after a key is resolved once it is read from a cache
 - ✅ extending core translations
 - ✅ lightweight - 1.4kB
@@ -107,6 +107,7 @@ $t('helloWorld')
 | `translations` | The core `{ key: value }` translations. |
 | `loggingEnabled` | When enabled warning logs will write to the console for missing keys. |
 | `cache` | Optionally pass a prebuilt cache of the resolved `{ key: value }` pairs. |
+| `countKey` | Optionally customize the count key. Defaults to `n` (`$t('user', { n: 1 })`) |
 
 ### API
 
@@ -151,8 +152,8 @@ i17n.t('withAnInterpolation', { name: 'Robin' }) // "Hey, Robin!"
 Keeping with the example above, there are times when a translation should resolve based on a given count. To do this simply provide a key of the same name and postfix it with `__one` or `__many`.
 
 ```ts
-i17n.t('withCounts.mouse', { count: 1 }) // "Mouse"
-i17n.t('withCounts.mouse', { count: 10 }) // "Mice"
+i17n.t('withCounts.mouse', { n: 1 }) // "Mouse"
+i17n.t('withCounts.mouse', { n: 10 }) // "Mice"
 ```
 
 

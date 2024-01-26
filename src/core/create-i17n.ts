@@ -30,6 +30,12 @@ export interface I17nConfig {
   loggingEnabled?: boolean;
 
   /**
+   * The key that will be used to determine if we should do a lookup for __one or __many.
+   * Default: 'n'
+   */
+  countKey?: string;
+
+  /**
    * Optionally pass a prebuilt cache of the resolved { key: value } pairs.
    */
   cache?: Map<string, string | InterpolatedFn>;
@@ -56,11 +62,6 @@ export enum CountValueIndicators {
   Many = 'many',
 }
 
-/**
- * The interpolations key that determines if we should do a lookup for __one or __many (CountValueIndicators).
- */
-export const COUNT_KEY = 'count';
-
 function getCountValue(count: number): CountValueIndicators {
   if (count === 0) {
     return CountValueIndicators.Many;
@@ -77,6 +78,11 @@ function buildCountValueKey(k: string, count: number): string {
  * Initialize the core i17n instance.
  */
 export function createI17n(config: I17nConfig): i17n {
+  /**
+   * The interpolations key that determines if we should do a lookup for __one or __many (CountValueIndicators).
+   */
+  const COUNT_KEY = config.countKey || 'n';
+
   const cache = config.cache || new Map<string, string | InterpolatedFn>();
   let translations: Translations = config.translations;
   const loggingEnabled = Boolean(config.loggingEnabled);

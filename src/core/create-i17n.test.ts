@@ -104,7 +104,7 @@ describe('createI17n', () => {
       expect(spy).toHaveBeenCalledWith('welcomeUser', expect.any(Function));
     });
 
-    it('should resolve a primitive value from the cache', () => {
+    it('resolves a primitive value from the cache', () => {
       const setSpy = jest.spyOn(cache, 'set');
       const getSpy = jest.spyOn(cache, 'get');
 
@@ -122,7 +122,7 @@ describe('createI17n', () => {
       expect(getSpy).toHaveBeenCalledTimes(4);
     });
 
-    it('should resolve a function from the cache', () => {
+    it('resolves a function from the cache', () => {
       const setSpy = jest.spyOn(cache, 'set');
       const getSpy = jest.spyOn(cache, 'get');
 
@@ -145,13 +145,13 @@ describe('createI17n', () => {
       const getSpy = jest.spyOn(cache, 'get');
 
       // no cache hit
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
 
       // cache hits (4)
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
 
       expect(setSpy).toHaveBeenCalledWith('project.name__one', lang.project.name__one);
       expect(setSpy).toHaveBeenCalledTimes(1);
@@ -163,13 +163,13 @@ describe('createI17n', () => {
       const getSpy = jest.spyOn(cache, 'get');
 
       // no cache hit
-      t('project.name', { count: 1 });
-      t('project.name', { count: 0 });
+      t('project.name', { n: 1 });
+      t('project.name', { n: 0 });
 
       // cache hits (3)
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
-      expect(t('project.name', { count: 1 })).toBe(lang.project.name__one);
-      expect(t('project.name', { count: 0 })).toBe(lang.project.name__many);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 1 })).toBe(lang.project.name__one);
+      expect(t('project.name', { n: 0 })).toBe(lang.project.name__many);
 
       expect(setSpy).toHaveBeenCalledWith('project.name__one', lang.project.name__one);
       expect(setSpy).toHaveBeenCalledWith('project.name__many', lang.project.name__many);
@@ -196,34 +196,69 @@ describe('createI17n', () => {
       ({ t } = createI17n({ translations: langWithCounts }));
     });
 
-    it('should find the the _one key when the count is one', () => {
-      expect(t('comment', { count: 1 })).toBe(langWithCounts.comment__one);
+    it('finds the the _one key when the count is one', () => {
+      expect(t('comment', { n: 1 })).toBe(langWithCounts.comment__one);
     });
 
-    it('should find the _many key when the number is 0', () => {
-      expect(t('comment', { count: 0 })).toBe(langWithCounts.comment__many);
+    it('finds the _many key when the number is 0', () => {
+      expect(t('comment', { n: 0 })).toBe(langWithCounts.comment__many);
     });
 
-    it('should find the _many key when the number is greater than 1', () => {
-      expect(t('comment', { count: 10 })).toBe(langWithCounts.comment__many);
+    it('finds the _many key when the number is greater than 1', () => {
+      expect(t('comment', { n: 10 })).toBe(langWithCounts.comment__many);
     });
 
-    it('should resolve to the key passed when there is a count and no count based interpolations', () => {
-      expect(t('user', { count: 10 })).toBe(langWithCounts.user);
+    it('resolves to the key passed when there is a count and no count based interpolations', () => {
+      expect(t('user', { n: 10 })).toBe(langWithCounts.user);
     });
 
     describe('nested', () => {
-      it('should find the the _one key when the count is one', () => {
-        expect(t('project.name', { count: 1 })).toBe(langWithCounts.project.name__one);
+      it('finds the the _one key when the count is one', () => {
+        expect(t('project.name', { n: 1 })).toBe(langWithCounts.project.name__one);
       });
 
-      it('should find the _many key when the number is greater than 1', () => {
-        expect(t('project.name', { count: 10 })).toBe(langWithCounts.project.name__many);
+      it('finds the _many key when the number is greater than 1', () => {
+        expect(t('project.name', { n: 10 })).toBe(langWithCounts.project.name__many);
       });
 
-      it('should resolve to the key passed when there is a count and no count based interpolations', () => {
-        expect(t('project.name', { count: 10 })).toBe(langWithCounts.project.name__many);
+      it('resolves to the key passed when there is a count and no count based interpolations', () => {
+        expect(t('project.name', { n: 10 })).toBe(langWithCounts.project.name__many);
       });
+    });
+  });
+
+  describe('count based with custom key', () => {
+    const langWithCounts = {
+      comment__one: 'Comment',
+      comment__many: 'Comments',
+
+      project: {
+        name__one: 'Project',
+        name__many: 'Projects',
+      },
+
+      user: 'User',
+    };
+    let t: i17n['t'];
+
+    beforeAll(() => {
+      ({ t } = createI17n({ translations: langWithCounts, countKey: 'count' }));
+    });
+
+    it('finds the the _one key when the count is one', () => {
+      expect(t('comment', { count: 1 })).toBe(langWithCounts.comment__one);
+    });
+
+    it('finds the _many key when the number is 0', () => {
+      expect(t('comment', { count: 0 })).toBe(langWithCounts.comment__many);
+    });
+
+    it('finds the _many key when the number is greater than 1', () => {
+      expect(t('comment', { count: 10 })).toBe(langWithCounts.comment__many);
+    });
+
+    it('resolves to the key passed when there is a count and no count based interpolations', () => {
+      expect(t('user', { count: 10 })).toBe(langWithCounts.user);
     });
   });
 
@@ -256,9 +291,9 @@ describe('createI17n', () => {
     it('should have the keys once extended', () => {
       expect(t('aNewKey')).toBe('here');
       expect(t('aNewInterpolated', { new: 'newer' })).toBe('a newer one');
-      expect(t('aNewWithCount', { count: 1 })).toBe('singular');
-      expect(t('aNewWithCount', { count: 2 })).toBe('plural');
-      expect(t('a.newNested.item', { count: 2 })).toBe('a new nested item');
+      expect(t('aNewWithCount', { n: 1 })).toBe('singular');
+      expect(t('aNewWithCount', { n: 2 })).toBe('plural');
+      expect(t('a.newNested.item', { n: 2 })).toBe('a new nested item');
       expect(t('global.save', { item: 'foo' })).toBe('Save foo');
       expect(t('global.buttons.edit')).toBe('Edit');
     });
