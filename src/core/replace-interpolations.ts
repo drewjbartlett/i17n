@@ -5,7 +5,7 @@ import { Interpolations } from '@src/core/create-i17n';
  *
  * `replaceInterpolations('Hello {user}', { user: 'drew' });`
  */
-export function replaceInterpolations(str: string, interpolations: Interpolations): string {
+export function replaceInterpolations<T extends Interpolations>(str: string, interpolations: T): string {
   let interpolated = str;
 
   Object.keys(interpolations).forEach((interpolation) => {

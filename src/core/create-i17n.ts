@@ -45,7 +45,7 @@ export interface I17nConfig {
  * This is a method that accepts a record of interpolations such as { user: 'drew' } and returns a string
  * with the interpolations.
  */
-export type InterpolatedFn = (interpolations: Interpolations) => string;
+export type InterpolatedFn<T = Interpolations> = (interpolations: T) => string;
 
 /**
  * The shape of interpolations. They may only be a key => value pair of strings: { user: 'drew' }.
@@ -70,7 +70,7 @@ function getCountValue(count: number): CountValueIndicators {
   return count === 1 ? CountValueIndicators.One : CountValueIndicators.Many;
 }
 
-function buildCountValueKey(k: string, count: number): string {
+export function buildCountValueKey(k: string, count: number): string {
   return `${k}__${getCountValue(count)}`;
 }
 
